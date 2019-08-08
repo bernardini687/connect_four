@@ -1,14 +1,14 @@
 # get cell
 # set cell
 # assess the grid
+#
+# rows, columns, diagonals
 
 # game_over if winner
 #
 # winner nil or Player
 #
 # def winner; return current_player if connected_four?
-#
-# def connected_four?; each_cons(4).any?
 
 module ConnectFour
   RSpec.describe Board do
@@ -47,7 +47,7 @@ module ConnectFour
 
     describe '#four_connected?' do
       it 'returns true when there is a sequence of 4 of the same' do
-        board = Board.new grid: %i[foo bar foo foo foo foo]
+        board = Board.new grid: [" ", " ", :foo, :foo, :foo, :foo]
 
         expect(board.four_connected?(board.grid)).to be_truthy
       end

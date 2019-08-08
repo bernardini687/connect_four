@@ -1,5 +1,3 @@
-require 'pry'
-
 module ConnectFour
   class Board
     attr_reader :grid
@@ -8,10 +6,8 @@ module ConnectFour
     end
 
     def four_connected?(line)
-      line.each_cons(4).any? do |cons|
-        next if cons.include? " "
-
-        cons.uniq.size == 1
+      line.each_cons(4).any? do |four_cons|
+        four_cons.include?(" ") ? next : four_cons.uniq.size == 1
       end
     end
 
