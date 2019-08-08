@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-module ConnectFour
-  describe Cell do
+RSpec.describe ConnectFour::Cell do
 
     context '#initialize' do
       describe '#value' do
@@ -25,4 +24,3 @@ module ConnectFour
       end
     end
   end
-end
