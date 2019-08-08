@@ -12,17 +12,17 @@ module ConnectFour
         expect { Board.new }.not_to raise_error
       end
 
-      xit 'sets the grid with 6 rows by default' do
+      it 'sets the grid with 6 rows by default' do
         board = Board.new
 
-        expect(board.grid).to have(6).things
+        expect(board.grid.size).to eq 6
       end
 
-      xit 'creates 7 things in each row by default' do
+      it 'creates 7 things in each row by default' do
         board = Board.new
 
         board.grid.each do |row|
-          expect(row).to have(7).things
+          expect(row.size).to eq 7
         end
       end
 
