@@ -47,6 +47,6 @@ use it to change the value of that cell with the color of the current player.
 From the 7th turn up,
 start checking for win:
 
-  col.each_cons(4).any? { |cons| cons == FOUR_WHITES }
+  line.each_cons(4).any? { |cons| cons == FOUR_WHITES || FOUR_BLACKS }
 
-  FOUR_WHITES = Array.new 4 { Cell.new value: '□' }
+  FOUR_WHITES = Array.new(4) { Cell.new value: '□' }

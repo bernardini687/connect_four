@@ -4,6 +4,14 @@
 
 # FOUR_IN_A_ROW
 
+# game_over if winner
+#
+# winner nil or Player
+#
+# def winner; return current_player if connected_four?
+#
+# def connected_four?; each_cons(4).any?
+
 module ConnectFour
   RSpec.describe Board do
 
@@ -36,6 +44,14 @@ module ConnectFour
 
           expect(board.grid).to eq :foo
         end
+      end
+    end
+
+    describe '#connected_four?' do
+      it 'returns true when 4 of the same are sequential' do
+        board = Board.new grid: %i[:foo :bar :foo :foo :foo :foo]
+
+        expect(board.connected_four?(board.grid)).to be_truthy
       end
     end
   end
