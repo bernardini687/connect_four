@@ -9,7 +9,7 @@ module ConnectFour
 
     context '#initialize' do
       it 'is successfully initialized without arguments' do
-        expect(Board.new).not_to raise_error
+        expect { Board.new }.not_to raise_error
       end
 
       xit 'sets the grid with 6 rows by default' do
@@ -27,7 +27,7 @@ module ConnectFour
       end
 
       it 'is successfully initialized with a custom grid' do
-        expect(Board.new grid: :foo).not_to raise_error
+        expect { Board.new grid: :foo }.not_to raise_error
       end
 
       describe '#grid' do
