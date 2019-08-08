@@ -1,0 +1,52 @@
+b = Player.new color: '■'
+w = Player.new color: '□'
+
+cell = Cell.new
+cell.empty? #=> true (constructed with a default value of " ")
+cell.value = b.color
+
+- - - - - - - -
+-             -
+-             -
+-  □          -
+-■ □ ■ □      -
+-■ ■ □ ■      -
+-■ ■ ■ □ ■ □ □-
+-1 2 3 4 5 6 7-
+
+
+
+- - - - - - - -
+-             -
+-             -
+-□ □          -
+-■ □ ■ □      -
+-■ ■ □ ■      -
+-■ ■ ■ □ ■ □ □-
+- white wins! -  /  "- black wins! -"  /  "- it's a tie! -"
+
+
+
+-white starts!-
+-             -
+-             -
+-             -
+-             -
+-             -
+-             -
+-1 2 3 4 5 6 7-
+
+When given 1,
+select col 1,
+
+  col.reverse_each.find_index(&:empty?)
+
+will be the index of the last empty cell,
+use it to change the value of that cell with the color of the current player.
+
+From the 7th turn up,
+start checking for win:
+
+  col.each_cons(4).any? { |cons| cons == FOUR_WHITES }
+
+  FOUR_WHITES = Array.new 4 { Cell.new value: '□' }
