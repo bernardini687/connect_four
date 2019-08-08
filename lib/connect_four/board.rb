@@ -1,3 +1,5 @@
+require 'pry'
+
 module ConnectFour
   class Board
     attr_reader :grid
@@ -5,10 +7,15 @@ module ConnectFour
       @grid = grid
     end
 
-    private
+    def four_connected?(line)
+      line.each_cons(4).any? do |cons|
+        next if cons.include? " "
 
-    FOUR_BLACKS = Array.new(4) { Cell.new value: '■' }
-    FOUR_WHITES = Array.new(4) { Cell.new value: '□' }
+        cons.uniq.size == 1
+      end
+    end
+
+    private
 
     def default_grid
       Array.new(6) { Array.new(7) { Cell.new } }

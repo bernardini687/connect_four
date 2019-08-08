@@ -2,8 +2,6 @@
 # set cell
 # assess the grid
 
-# FOUR_IN_A_ROW
-
 # game_over if winner
 #
 # winner nil or Player
@@ -47,11 +45,23 @@ module ConnectFour
       end
     end
 
-    describe '#connected_four?' do
-      it 'returns true when 4 of the same are sequential' do
-        board = Board.new grid: %i[:foo :bar :foo :foo :foo :foo]
+    describe '#four_connected?' do
+      it 'returns true when there is a sequence of 4 of the same' do
+        board = Board.new grid: %i[foo bar foo foo foo foo]
 
-        expect(board.connected_four?(board.grid)).to be_truthy
+        expect(board.four_connected?(board.grid)).to be_truthy
+      end
+
+      it 'returns false when there is no sequence of 4 of the same' do
+        board = Board.new grid: %i[foo bar foo foo foo bar]
+
+        expect(board.four_connected?(board.grid)).to be_falsey
+      end
+
+      it 'ignores white space' do
+        board = Board.new grid: [" ", " ", " ", " ", :foo, :bar]
+
+        expect(board.four_connected?(board.grid)).to be_falsey
       end
     end
   end
