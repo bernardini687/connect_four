@@ -1,14 +1,13 @@
-# get cell
-# set cell
+# drop_piece -> set_cell(color, pos)
 # assess the grid
-#
-# rows, columns, diagonals
 
 # game_over if winner
 #
 # winner nil or Player
 #
 # def winner; return current_player if connected_four?
+
+# lines.any? { |line| four_connected?(line) }
 
 module ConnectFour
   RSpec.describe Board do
@@ -50,6 +49,15 @@ module ConnectFour
         board = Board.new
 
         expect(board.lines.size).to eq 25
+      end
+    end
+
+    describe '#game_over?' do
+      it 'detects the game is over' do
+        board = Board.new
+        1.upto(4) { |n| board.set_cell(:foo, n) }
+
+        expect(board.game_over?).to be_truthy
       end
     end
 

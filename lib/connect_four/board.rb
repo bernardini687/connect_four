@@ -1,4 +1,5 @@
 require 'matrix'
+# require 'pry'
 
 module ConnectFour
   class Board
@@ -11,6 +12,17 @@ module ConnectFour
       line.each_cons(4).any? do |four_cons|
         four_cons.include?(" ") ? next : four_cons.uniq.size == 1
       end
+    end
+
+    def set_cell(value, column_number)
+      column = grid.transpose[column_number - 1]
+      index_of_last_empty_cell = column.reverse_each.find_index(&:empty?)
+      column[index_of_last_empty_cell].value = value
+    end
+
+    def game_over?
+      lines.any? { |line| four_connected?(line) }
+      # binding.pry
     end
 
     def lines
