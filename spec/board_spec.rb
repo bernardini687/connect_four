@@ -45,6 +45,14 @@ module ConnectFour
       end
     end
 
+    describe '#lines' do # will be private
+      it 'returns all the lines valid for winning' do
+        board = Board.new
+
+        expect(board.lines.size).to eq 25
+      end
+    end
+
     describe '#four_connected?' do
       it 'returns true when there is a sequence of 4 of the same' do
         board = Board.new grid: [" ", " ", :foo, :foo, :foo, :foo]
