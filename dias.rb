@@ -22,24 +22,8 @@ def sawt_diagonal(matrix, row: 0, col: 0)
   diagonal
 end
 
-# p sawt_diagonal(trx, col: 6)
-# p sawt_diagonal(trx, col: 5)
-# p sawt_diagonal(trx, col: 4)
-p sawt_diagonal(trx, col: 3)
-p sawt_diagonal(trx, col: 2)
-p sawt_diagonal(trx, col: 1)
-p sawt_diagonal(trx)
-puts
-p sawt_diagonal(trx, row: 1)
-p sawt_diagonal(trx, row: 2)
-# p sawt_diagonal(trx, row: 3)
-# p sawt_diagonal(trx, row: 4)
-# p sawt_diagonal(trx, row: 5)
-puts
-
 def ramp_diagonal(matrix, row: 0, col: 0)
   max_row = matrix.size
-  max_col = matrix[0].size
 
   diagonal = []
 
@@ -52,16 +36,18 @@ def ramp_diagonal(matrix, row: 0, col: 0)
   diagonal
 end
 
-# p ramp_diagonal(trx)
-# p ramp_diagonal(trx, col: 1)
-# p ramp_diagonal(trx, col: 2)
-p ramp_diagonal(trx, col: 3)
-p ramp_diagonal(trx, col: 4)
-p ramp_diagonal(trx, col: 5)
-p ramp_diagonal(trx, col: 6)
-puts
-p ramp_diagonal(trx, row: 1, col: 6)
-p ramp_diagonal(trx, row: 2, col: 6)
-# p ramp_diagonal(trx, row: 3, col: 6)
-# p ramp_diagonal(trx, row: 4, col: 6)
-# p ramp_diagonal(trx, row: 5, col: 6)
+def diagonals(trx)
+  result = []
+
+  0.upto(3) do |n|
+    result << sawt_diagonal(trx, col: n)
+    result << ramp_diagonal(trx, col: n + 3)
+  end
+
+  1.upto(2) do |n|
+    result << sawt_diagonal(trx, row: n)
+    result << ramp_diagonal(trx, row: n, col: 6)
+  end
+
+  result
+end
