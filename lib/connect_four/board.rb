@@ -1,3 +1,5 @@
+require 'matrix'
+
 module ConnectFour
   class Board
     attr_reader :grid
@@ -15,6 +17,7 @@ module ConnectFour
 
     def default_grid
       Array.new(6) { Array.new(7) { Cell.new } }
+      # Matrix.build(6, 7) { Cell.new }
     end
   end
 end
