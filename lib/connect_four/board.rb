@@ -8,31 +8,26 @@ module ConnectFour
     end
 
     def four_connected?(line)
-      # line.map(&:value)...
       line.each_cons(4).any? do |four_cons|
         four_cons.include?(" ") ? next : four_cons.uniq.size == 1
       end
     end
 
-    def set_cell(value, column)
-      col = grid.transpose[column - 1]
-      index_of_empty_cell = col.reverse_each.find_index(&:empty?)
-      col[col.size - 1 - index_of_empty_cell].value = value
+    def set_cell(value, index)
+      col = grid.transpose[index - 1] # Need to deal with Cell, not mappings of their values
+      i = col.reverse_each.find_index(&:empty?)
+      index_of_last_empty_cell = i.zero? ? -1 : -i
+      col[index_of_last_empty_cell].value = value
     end
 
     def game_over?
       lines.any? { |line| four_connected?(line) }
-      binding.pry
-    end
-
-    def lines
-      [].concat(grid).concat(grid.transpose).concat(diagonals)
     end
 
     private
 
     def rows
-      grid.map(&:value)
+      grid.map { |row| row.map(&:value) }
     end
 
     def columns
@@ -46,11 +41,11 @@ module ConnectFour
 
     def sawt_diagonal(row: 0, col: 0)
       max_row = rows.size
-      max_col = grid[0].size
+      max_col = columns.size
       diagonal = []
 
       while row < max_row && col < max_col
-        diagonal << grid[row][col]
+        diagonal << rows[row][col]
         row += 1
         col += 1
       end
@@ -59,11 +54,11 @@ module ConnectFour
     end
 
     def ramp_diagonal(row: 0, col: 0)
-      max_row = grid.size
+      max_row = rows.size
       diagonal = []
 
       while col >= 0 && row < max_row
-        diagonal << grid[row][col]
+        diagonal << rows[row][col]
         row += 1
         col -= 1
       end
@@ -86,5 +81,10 @@ module ConnectFour
 
       result
     end
+
+    def lines
+      [].concat(rows).concat(columns).concat(diagonals)
+    end
+
   end
 end

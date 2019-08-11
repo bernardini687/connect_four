@@ -7,8 +7,6 @@
 #
 # def winner; return current_player if connected_four?
 
-# lines.any? { |line| four_connected?(line) }
-
 module ConnectFour
   RSpec.describe Board do
 
@@ -41,14 +39,6 @@ module ConnectFour
 
           expect(board.grid).to eq :foo
         end
-      end
-    end
-
-    describe '#lines' do # will be private
-      it 'returns all the lines valid for winning' do
-        board = Board.new
-
-        expect(board.lines.size).to eq 25
       end
     end
 
