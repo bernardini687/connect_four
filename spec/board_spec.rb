@@ -1,6 +1,3 @@
-# drop_piece -> set_cell(color, pos)
-# assess the grid
-
 # game_over if winner
 #
 # winner nil or Player
