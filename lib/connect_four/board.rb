@@ -12,7 +12,7 @@ module ConnectFour
     end
 
     def to_s
-      draw = "- - - - - - - -\n"
+      draw = ''
       rows.each do |row|
         draw += "-#{row.join(' ')}-\n"
       end
