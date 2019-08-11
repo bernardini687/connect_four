@@ -1,5 +1,4 @@
-require 'matrix'
-# require 'pry'
+require 'pry'
 
 module ConnectFour
   class Board
@@ -9,27 +8,36 @@ module ConnectFour
     end
 
     def four_connected?(line)
+      # line.map(&:value)...
       line.each_cons(4).any? do |four_cons|
         four_cons.include?(" ") ? next : four_cons.uniq.size == 1
       end
     end
 
-    def set_cell(value, column_number)
-      column = grid.transpose[column_number - 1]
-      index_of_last_empty_cell = column.reverse_each.find_index(&:empty?)
-      column[index_of_last_empty_cell].value = value
+    def set_cell(value, column)
+      col = grid.transpose[column - 1]
+      index_of_empty_cell = col.reverse_each.find_index(&:empty?)
+      col[col.size - 1 - index_of_empty_cell].value = value
     end
 
     def game_over?
       lines.any? { |line| four_connected?(line) }
-      # binding.pry
+      binding.pry
     end
 
     def lines
-      grid.concat(grid.transpose).concat(diagonals)
+      [].concat(grid).concat(grid.transpose).concat(diagonals)
     end
 
     private
+
+    def rows
+      grid.map(&:value)
+    end
+
+    def columns
+      rows.transpose
+    end
 
     def default_grid
       Array.new(6) { Array.new(7) { Cell.new } }
@@ -37,7 +45,7 @@ module ConnectFour
     end
 
     def sawt_diagonal(row: 0, col: 0)
-      max_row = grid.size
+      max_row = rows.size
       max_col = grid[0].size
       diagonal = []
 
