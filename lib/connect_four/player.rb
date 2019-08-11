@@ -4,5 +4,12 @@ module ConnectFour
     def initialize(color:)
       @color = color
     end
+
+    def color_name
+      case color
+      when '■' then 'black'
+      else 'white'
+      end
+    end
   end
 end
