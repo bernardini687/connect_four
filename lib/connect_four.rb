@@ -7,8 +7,3 @@ require "connect_four/version"
 module ConnectFour
   class Error < StandardError; end
 end
-
-players = [Player.new(color: '■'), Player.new(color: '□')]
-game = Game.new(players: players)
-
-game.play

@@ -9,7 +9,7 @@ module ConnectFour
 
     def play
       puts "#{current_player.color} starts"
-      until game_over?
+      until board.game_over?
         puts board
         drop_piece
         switch_players
