@@ -8,9 +8,10 @@ module ConnectFour
     end
 
     def play
-      puts "#{current_player.color} starts"
       until board.game_over?
-        puts board
+        print `clear`
+        puts "- #{current_player.color_name} moves -"
+        puts "-1 2 3 4 5 6 7-"
         drop_piece
         switch_players
       end

@@ -27,7 +27,7 @@ cell.value = b.color
 
 
 
--white starts!-
+- white moves -
 -             -
 -             -
 -             -

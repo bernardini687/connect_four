@@ -8,4 +8,7 @@ module ConnectFour
   game = Game.new(players: players)
 
   game.play
+  print `clear`
+  puts "#{game.other_player.color_name} wins!"
+  puts game.board
 end
