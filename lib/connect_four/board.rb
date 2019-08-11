@@ -11,6 +11,14 @@ module ConnectFour
       end
     end
 
+    def to_s
+      draw = "- - - - - - - -\n"
+      rows.each do |row|
+        draw += "-#{row.join(' ')}-\n"
+      end
+      draw
+    end
+
     def set_cell(value, index)
       col = grid.transpose[index - 1] # Deal with Cell objs, not mappings of their values
       ind = col.reverse_each.find_index(&:empty?)
