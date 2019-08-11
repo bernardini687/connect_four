@@ -1,3 +1,5 @@
+require 'pry'
+
 module ConnectFour
   class Game
     attr_reader :players, :board, :current_player, :other_player
@@ -9,10 +11,7 @@ module ConnectFour
 
     def play
       until board.game_over?
-        print `clear`
-        puts "- #{current_player.color_name} moves -"
-        puts board
-        puts "-1 2 3 4 5 6 7-"
+        reset_display
         drop_piece
         switch_players
       end
@@ -20,9 +19,10 @@ module ConnectFour
 
     def drop_piece
       column = ''
+      binding.pry
       until ('1'..'7').cover?(column)
         column = gets.chomp
-        print `clear`
+        reset_display
       end
 
       board.set_cell(current_player.color, column.to_i)
@@ -30,6 +30,15 @@ module ConnectFour
 
     def switch_players
       @current_player, @other_player = @other_player, @current_player
+    end
+
+    private
+
+    def reset_display
+      print `clear`
+      puts "- #{current_player.color_name} moves -"
+      puts board
+      puts "-1 2 3 4 5 6 7-" # board.avaiable_columns
     end
   end
 end
