@@ -9,6 +9,6 @@ module ConnectFour
 
   game.play
   print `clear`
-  puts "#{game.other_player.color_name} wins!"
+  puts "- #{game.other_player.color_name} wins! -"
   puts game.board
 end

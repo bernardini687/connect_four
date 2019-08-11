@@ -22,6 +22,7 @@ module ConnectFour
       column = ''
       until ('1'..'7').cover?(column)
         column = gets.chomp
+        print `clear`
       end
 
       board.set_cell(current_player.color, column.to_i)
