@@ -1,5 +1,3 @@
-require 'pry'
-
 module ConnectFour
   class Board
     attr_reader :grid
@@ -14,9 +12,11 @@ module ConnectFour
     end
 
     def set_cell(value, index)
-      col = grid.transpose[index - 1] # Need to deal with Cell, not mappings of their values
-      i = col.reverse_each.find_index(&:empty?)
-      index_of_last_empty_cell = i.zero? ? -1 : -i
+      col = grid.transpose[index - 1] # Deal with Cell objs, not mappings of their values
+      ind = col.reverse_each.find_index(&:empty?)
+
+      index_of_last_empty_cell = -(ind + 1) # reverse_each starts again from 0, transpose it
+
       col[index_of_last_empty_cell].value = value
     end
 
@@ -36,7 +36,6 @@ module ConnectFour
 
     def default_grid
       Array.new(6) { Array.new(7) { Cell.new } }
-      # Matrix.build(6, 7) { Cell.new }
     end
 
     def sawt_diagonal(row: 0, col: 0)
@@ -85,6 +84,5 @@ module ConnectFour
     def lines
       [].concat(rows).concat(columns).concat(diagonals)
     end
-
   end
 end
