@@ -11,6 +11,7 @@ module ConnectFour
       until board.game_over?
         print `clear`
         puts "- #{current_player.color_name} moves -"
+        puts board
         puts "-1 2 3 4 5 6 7-"
         drop_piece
         switch_players
