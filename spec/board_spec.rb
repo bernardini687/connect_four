@@ -49,6 +49,15 @@ module ConnectFour
 
         expect(board.game_over?).to be_truthy
       end
+
+      it 'detects the game is not over' do
+        board = Board.new
+        board.set_cell(:foo, 3)
+        board.set_cell(:bar, 3)
+        board.set_cell(:foo, 4)
+
+        expect(board.game_over?).to be_falsey
+      end
     end
 
     describe '#four_connected?' do
