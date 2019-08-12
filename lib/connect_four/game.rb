@@ -1,5 +1,3 @@
-require 'pry'
-
 module ConnectFour
   class Game
     attr_reader :players, :board, :current_player, :other_player
@@ -19,8 +17,7 @@ module ConnectFour
 
     def drop_piece
       column = ''
-      binding.pry
-      until ('1'..'7').cover?(column)
+      until ('1'..'7').to_a.include?(column)
         column = gets.chomp
         reset_display
       end
